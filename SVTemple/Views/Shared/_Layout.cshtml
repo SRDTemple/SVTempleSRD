@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html>
+<head class="skel-layers-fixed">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Sri Vaikuntapuramu Temple- Sanga Reddy</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
+    @*<link rel="stylesheet" href="~/Content/css/font-awesome.min.css" />*@
+    <link rel="stylesheet" href="~/Content/css/style.css" />
+    <link rel="stylesheet" href="~/Content/css/style-xlarge.css" />
+    <!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+    
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>*@
+    <!-- jQuery UI 1.11.4 -->
+    @*
+        <script src="~/bower_components/jquery-ui/jquery-ui.min.js"></script>*@
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>*@
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button);
+    </script>
+    <!-- Bootstrap 3.3.7 -->
+    @*
+        <script src="~/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/todc-bootstrap/3.3.7-3.3.13/js/bootstrap.min.js"></script>
+    @*<script src="~/Scripts/jquery.min.js"></script>*@
+    <script src="~/Scripts/skel.min.js"></script>
+    <script src="~/Scripts/skel-layers.min.js"></script>
+    <script src="~/Scripts/init.js"></script>
+
+
+
+
+</head>
+<!-- Header -->
+<body>
+    <div id="paypal-button"> </div>
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+    <script>
+        paypal.Button.render({
+            env: 'sandbox',
+            client: {
+                sandbox: 'ASQdAGjX0N9gpKvck2FKrZ8sReBnwg0UoO9QsIHUTorD5TmMq0UyjVnMp7YiH-NeMGPnhE8BeI5foUEk'
+            },
+            payment: function (data, actions) {
+                return actions.payment.create({
+                    transactions: [{
+                        amount: {
+                            total: '0.01',
+                            currency: 'USD'
+                        }
+                    }]
+                });
+            },
+            onAuthorize: function (data, actions) {
+                return actions.payment.execute()
+                    .then(function () {
+                        window.alert('Thank you for your purchase!');
+                    });
+            }
+        }, '#paypal-button');
+    </script>
+    <div>
+        <header id="header" class="skel-layers-fixed">
+            <h2><a href="#">Sri Vaikuntapuramu Divya kshetram</a></h2>
+            <nav id="nav">
+                <ul>
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("About", "History", "Home", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Events", "Events", "Home", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Services", "Charity", "Home", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, null)</li>
+                    <li><a id="paypal-button" href="#" class="button special">Donate</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+    <div id="id=" top"">
+        @RenderBody()
+        <hr />
+        <!-- Footer -->
+        <footer id="footer">
+            <div class="container">
+                <div class="row double">
+                    <div class="6u">
+                        <div class="row collapse-at-2">
+                            <div class="6u">
+                                <h3>Temple News</h3>
+                                <ul class="alt">
+                                    <li><a href="#">Temple History on News</a></li>
+                                    <li><a href="#">Idol Installation News</a></li>
+                                </ul>
+                            </div>
+                            <div class="6u">
+                                <h3>Temple Videos</h3>
+                                <ul class="alt">
+                                    <li><a href="https://www.youtube.com/watch?v=qEZrSaIzGag">ETV Published on April 11</a></li>
+                                    <li><a href="https://www.youtube.com/watch?v=iXbwk-QMmtw">Indian Temple Video</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="6u">
+                        <h2>Temple Feature Developments</h2>
+                        <p>Our Mission is to develop Rajagopuram construction and Veda Patashala.</p>
+                        <ul class="icons">
+                            <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+                            <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+                            <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+                            <li><a href="#" class="icon fa-linkedin"><span class="label">LinkedIn</span></a></li>
+                            <li><a href="#" class="icon fa-pinterest"><span class="label">Pinterest</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <ul class="copyright">
+                    <li>&copy;2018 SV TEMPLE Sanga Reddy. All rights reserved.</li>
+                    <li>Google Map: <a href="https://www.google.co.in/maps/place/Sri+Vaikuntapuram+Venkateswara+Temple/17.6334343,78.0984579,15z/data=!4m5!3m4!1s0x0:0xb29c4fdbcc57527b!8m2!3d17.6334343!4d78.0984579">Google Map</a></li>
+                    <li>Images: <a href="http://svtemplesrd.org">Jai Srimanarayana</a></li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

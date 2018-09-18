@@ -1,0 +1,478 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<!--
+    SRD Temple
+
+-->
+<html>
+<head>
+    <title>Sri Vaikuntapuramu Temple- Sanga Reddy</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <![endif]-->
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/skel.min.js"></script>
+    <script src="js/skel-layers.min.js"></script>
+    <script src="js/init.js"></script>
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+    <script>
+        paypal.Button.render({
+
+            env: 'production', // Optional: specify 'sandbox' environment
+
+            client: {
+                sandbox: 'AS3qytYEhfMegXGTrKOPn5k5_sCNys7Kfta37CLm6KJAi4i5gY7b-dY28yiFQUG0zBXZkUKCtizcmbbM',
+                production: 'AdFtIpeMtipQ_hTt7ZeuCKIja6cR-H2dfd1x8p-d2-Z6WCiVlZfGe7-khC9GSSwIzXZvKu_Pr7KT20p9'
+            },
+
+            payment: function () {
+
+                var env = this.props.env;
+                var client = this.props.client;
+
+                return paypal.rest.payment.create(env, client, {
+                    transactions: [
+                        {
+                            amount: { total: '1.00', currency: 'USD' }
+                        }
+                    ]
+                });
+            },
+
+            commit: true, // Optional: show a 'Pay Now' button in the checkout flow
+
+            onAuthorize: function (data, actions) {
+
+                // Optional: display a confirmation page here
+
+                return actions.payment.execute().then(function () {
+                    // Show a success page to the buyer
+                });
+            }
+
+        }, '#paypal-button');
+    </script>
+    <style>
+        /* Set the size of the div element that contains the map */
+        #map {
+            height: 400px; /* The height is 400 pixels */
+            width: 100%; /* The width is the width of the web page */
+        }
+    </style>
+    <script>
+        // Initialize and add the map
+        function initMap() {
+            // The location of Uluru
+            var uluru = { lat: 17.6334343, lng: 78.0962692 };
+            // The map, centered at Uluru
+            var map = new google.maps.Map(
+                document.getElementById('map'), { zoom: 12, center: uluru });
+            // The marker, positioned at Uluru
+            var marker = new google.maps.Marker({ position: uluru, map: map });
+        }
+    </script>
+
+    <noscript>
+        <link href="~/Content/css/skel.css" rel="stylesheet" />
+        <link href="~/Content/css/style.css" rel="stylesheet" />
+        <link href="~/Content/css/style-xlarge.css" rel="stylesheet" />
+        @*<link rel="stylesheet" href="css/skel.css" />
+            <link rel="stylesheet" href="css/style.css" />
+            <link rel="stylesheet" href="css/style-xlarge.css" />*@
+    </noscript>
+
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/animations.css" rel="stylesheet" />
+    <link href="~/Content/css/fonts.css" rel="stylesheet" />
+    <link href="~/Content/css/main.css" rel="stylesheet" class="color-switcher-link" />
+    <link href="~/Content/css/shop.css" rel="stylesheet" class="color-switcher-link" />
+
+    @*<link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/animations.css">
+        <link rel="stylesheet" href="css/fonts.css">
+        <link rel="stylesheet" href="css/main.css" class="color-switcher-link">
+        <link rel="stylesheet" href="css/shop.css" class="color-switcher-link">*@
+    <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+    <!--[if lt IE 9]>
+        <script src="js/vendor/html5shiv.min.js"></script>
+        <script src="js/vendor/respond.min.js"></script>
+        <script src="js/vendor/jquery-1.12.4.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <!--[if lt IE 9]>
+        <div class="bg-danger text-center">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/" class="highlight">upgrade your browser</a> to improve your experience.</div>
+    <![endif]-->
+    <div class="preloader">
+        <div class="preloader_image"></div>
+    </div>
+    <!-- search modal -->
+    <div class="modal" tabindex="-1" role="dialog" aria-labelledby="search_modal" id="search_modal">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">
+                <i class="rt-icon2-cross2"></i>
+            </span>
+        </button>
+        <div class="widget widget_search">
+            <form method="get" class="searchform search-form form-inline" action="./">
+                <div class="form-group bottommargin_0"> <input type="text" value="" name="search" class="form-control" placeholder="Search keyword" id="modal-search-input"> </div> <button type="submit" class="theme_button no_bg_button">Search</button>
+            </form>
+        </div>
+    </div>
+    <!-- Unyson messages modal -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="messages_modal">
+        <div class="fw-messages-wrap ls with_padding">
+            <!-- Uncomment this UL with LI to show messages in modal popup to your user: -->
+            <!--
+            <ul class="list-unstyled">
+                <li>Message To User</li>
+            </ul>
+            -->
+        </div>
+    </div>
+    <!-- eof .modal -->
+    <!-- wrappers for visual page editor and boxed version of template -->
+    <div id="canvas">
+        <div id="box_wrapper">
+            <!-- template sections -->
+            <!-- Header -->
+            <section class="page_topline ds table_section table_section_lg section_padding_top_15 section_padding_bottom_15 columns_margin_0">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-6 text-center text-lg-left hidden-xs">
+                            <div class="inline-content big-spacing">
+                                <div class="page_social">
+                                    <a class="icon fa-facebook" href="#" title="Facebook"></a>&nbsp;&nbsp;&nbsp; <a class="icon fa-twitter" href="#" title="Twitter"></a>&nbsp;&nbsp;&nbsp;
+                                    <a class="icon fa-google" href="#" title="Google Plus"></a>&nbsp;&nbsp;&nbsp;
+                                    <a class="icon fa-linkedin" href="#" title="Linkedin"></a> &nbsp;
+                                    <a class="icon fa-youtube" href="#" title="Youtube"></a>
+                                </div> <span class="xs-block">
+                                    <i class="fa fa-clock-o highlight3 rightpadding_5" aria-hidden="true"></i>
+                                    Sun-Fri: 06:00-20:00; Sat: 05:00-20:30
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 text-center text-lg-right">
+                            <div id="topline-animation-wrap" style="height: 31px;">
+                                <div id="topline-hide" class="inline-content big-spacing">
+                                    <span class="hidden-xs">
+                                        <i class="fa fa-map-marker highlight3 rightpadding_5" aria-hidden="true"></i>
+                                        Sri Vaikuntapuramu, Sangareddy - 502201
+                                    </span> <span class="greylinks hidden-xs">
+                                        <i class="fa fa-pencil highlight3 rightpadding_5" aria-hidden="true"></i>
+                                        <a href="mailto:svtemplesrd@gmail.com">svtemplesrd@gmail.com</a>
+                                    </span>
+                                    <div class="xs-block">
+                                        <ul class="inline-list menu greylinks">
+                                            <li>
+                                                <a href="#0">
+                                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                                </a>
+                                            </li>
+                                            <!--<li> <a href="#0">
+                                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                            </a> </li>-->
+                                            <li class="dropdown">
+                                                <a id="search-show" href="./">
+                                                    <i class="fa fa-search"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div id="topline-show" class="widget widget_search">
+                                    <form method="get" class="searchform inline-form" action="./">
+                                        <div class="form-group-wrap">
+                                            <div class="form-group">
+                                                <label class="sr-only" for="topline-widget-search">Search for:</label> <input id="topline-widget-search" type="text" value="" name="search" class="form-control" placeholder="Enter Keyword..."> <a href="./" id="search-close">
+                                                    <i class="fa fa-close"></i>
+                                                </a>
+                                            </div> <button type="submit" class="theme_button no_bg_button color1">ok</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <header class="page_header header_white toggler_xs_right columns_margin_0">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12 display_table">
+                            <div class="header_left_logo display_table_cell">
+                                <a href="index.html" class="logo logo_with_text">
+                                    @*<img src="images/logo.png" alt="">*@
+                                    <img src="~/images/logo.png" alt="" />
+                                    <span class="logo_text">
+                                        Sri Vaikuntapuramu
+                                        <small class="highlight4">Virat venkateswara swamy Divya kshetram - Sangareddy</small>
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="header_mainmenu display_table_cell text-center">
+                                <!-- main nav start -->
+                                <nav class="mainmenu_wrapper" style="">
+                                    <ul class="mainmenu nav sf-menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
+                                        <li>
+                                            <a href="index.html" class="sf-with-ul">Home</a>
+                                        </li>
+                                        <li>
+                                            <a href="about.html" class="sf-with-ul">History</a>
+                                            <ul style="display: none; margin-top: 5px;">
+                                                <!-- features -->
+                                                <!-- eof features -->
+                                                <li> <a href="about.html">About</a> </li>
+                                                <li>
+                                                    <a href="team.html" class="sf-with-ul">Team</a>
+                                                    <ul style="display: none; margin-top: 5px;">
+                                                        <li> <a href="team.html">Leaders</a> </li>
+                                                        <li> <a href="team.html">Team Member</a> </li>
+                                                    </ul>
+                                                </li>
+                                                <li> <a href="donate.html">Donate</a> </li>
+                                                <li> <a href="timetable.html">Timetable</a> </li>
+                                                <!-- events -->
+
+                                            </ul>
+                                        </li>
+                                        <!-- eof pages -->
+                                        <li>
+                                            <a href="services.html" class="sf-with-ul">Services</a>
+                                            <ul style="display: none; margin-top: 5px;">
+                                                <li> <a href="services.html">Temple Services</a> </li>
+                                                <li> <a href="services.html">Charity Service</a> </li>
+                                            </ul>
+                                        </li>
+                                        <!-- gallery -->
+                                        <li>
+                                            <a href="gallery-carousel.html" class="sf-with-ul">Gallery</a>
+                                            <ul style="display: none; margin-top: 5px;">
+
+                                                <!-- eof Gallery extended -->
+                                                <!-- Gallery carousel -->
+                                                <li>
+                                                    <a href="gallery-carousel.html" class="sf-with-ul">Temple Gallery </a>
+                                                    <ul style="display: none; margin-top: 5px;">
+                                                        <li> <a href="gallery-carousel.html">Old Gallery</a> </li>
+                                                        <li> <a href="gallery-carousel.html">Swamy Kalyanam Gallery</a> </li>
+                                                        <li> <a href="gallery-carousel.html">Charity Gallery</a> </li>
+                                                    </ul>
+                                                </li>
+                                                <!-- eof Gallery carousel -->
+
+                                            </ul>
+                                        </li>
+                                        <!-- eof Gallery -->
+                                        <!-- contacts -->
+                                        <li class="active"> <a href="contact.html" class="sf-with-ul">Contacts</a>
+
+                                    </ul>
+                                    </li>
+                                    <!-- eof contacts -->
+                                    </ul>
+                                </nav>
+
+                                <!-- eof main nav -->
+                                <!-- header toggler --><span class="toggle_menu"><span></span></span>
+                            </div>
+                            <div class="header_right_buttons display_table_cell text-right hidden-xs" style="min-width: 250px;"> <a href="donate.html" class="theme_button color2 margin_0">Donate us now!</a> </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <section class="page_breadcrumbs ds background_cover section_padding_top_65 section_padding_bottom_65">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <h2>Contacts</h2>
+                            <ol class="breadcrumb greylinks">
+                                <li>
+                                    <a href="./">
+                                        Home
+                                    </a>
+                                </li>
+                                <li> <a href="#">Pages</a> </li>
+                                <li class="active">Contacts</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="ls page_map" data-address="sydney, australia, Liverpool street, 18">
+                <!-- marker description and marker icon goes here -->
+                <div class="map_marker_description">
+                    <h3>Sri Vaikuntapuram Venkateswara Temple</h3>
+                    <p>Vaikuntapuram, Sangareddy</p>
+                    <img class="map_marker_icon" src="~/images/map_marker_icon.png" alt="">
+                    <!--The div element for the map -->
+                    <div id="map"></div>
+                    <!-- Replace the value of the key parameter with your own API key. -->
+                    <script async defer
+                            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTkHNzvFbVv70nLLpvESFQ6JjTnVFlOys&callback=initMap">
+                    </script>
+
+                </div>
+            </section>
+            <section class="ls columns_padding_25 section_padding_top_100 section_padding_bottom_100">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-8 to_animate" data-animation="scaleAppear">
+                            <h3>Contact Form</h3>
+                            @using (Html.BeginForm("ContactUs", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @class = "contact-form row columns_padding_10" }))
+                            {
+                                    <div class="col-sm-6">
+                                        <div class="form-group bottommargin_0"> <label for="name">Full Name <span class="required">*</span></label> <input type="text" aria-required="true" size="30" value="" name="name" id="name" class="form-control" placeholder="Full Name*"> </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group bottommargin_0"> <label for="email">Email address<span class="required">*</span></label> <input type="email" aria-required="true" size="30" value="" name="email" id="email" class="form-control" placeholder="Email Address*"> </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group bottommargin_0"> <label for="phone">Phone Number</label> <input type="text" size="30" value="" name="phone" id="phone" class="form-control" placeholder="Phone Number"> </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group bottommargin_0"> <label for="subject">Subject</label> <input type="text" size="30" value="" name="subject" id="subject" class="form-control" placeholder="Your Subject"> </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group bottommargin_0"> <label for="message">Message</label> <textarea aria-required="true" rows="5" cols="45" name="message" id="message" class="form-control" placeholder="Your Message..."></textarea> </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="contact-form-submit topmargin_20"> <button type="submit" id="contact_form_submit" name="contact_submit" class="theme_button color2 min_width_button margin_0">Send now</button> </div>
+                                    </div>
+                            }
+                        </div>
+                        <!--.col-* -->
+                        <div class="col-sm-4 to_animate" data-animation="scaleAppear">
+                            <h3>Contact Info</h3>
+                            <div class="media small-media">
+                                <div class="media-left"> <i class="fa fa-map-marker highlight2"></i> </div>
+                                <div class="media-body"> Sri Vaikuntapuramu, Sangareddy - 502201</div>
+                            </div>
+                            <div class="media small-media">
+                                <div class="media-left"> <i class="fa fa-clock-o highlight2"></i> </div>
+                                <div class="media-body">Working Hours: 6:00am - 8:00pm</div>
+                            </div>
+                            <div class="media small-media greylinks">
+                                <div class="media-left"> <i class="fa fa-pencil highlight2"></i> </div>
+                                <div class="media-body"> <a href="mailto:svtemplesrd@gmail.com">svtemplesrd@gmail.com</a> </div>
+                            </div>
+                            <div class="media small-media">
+                                <div class="media-left"> <i class="fa fa-phone highlight2"></i> </div>
+                                <div class="media-body">+91-732 992 6266 (Swamyji) </div>
+                            </div>
+                        </div>
+                        <!--.col-* -->
+                    </div>
+                    <!--.row -->
+                </div>
+                <!--.container -->
+            </section>
+            <!--Footer Section -->
+            <footer class="page_footer template_footer ds ms parallax overlay_color section_padding_top_10 section_padding_bottom_10 columns_padding_25">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6 col-xs-12 col-md-push-4 text-center">
+                            <div class="widget widget_text widget_about">
+                                <div class="logo logo_with_text bottommargin_2">
+                                    <img src="~/images/logo.png" alt=""> <span class="logo_text">
+                                        Sri Vaikuntapuramu
+                                        <small class="highlight4">Virat Venkateswara Swamy Divya Kshetram</small>
+                                    </span>
+                                </div>
+
+                                <p>The winds blow, that is Hinkara, A Cloud is formed, that is Prastava It rains, that is an Udgitha The lightning that strikes and thunder that rolls, that is Pratihara .The rains stop and clouds lifts, that is Nidhana.</p>
+                                <!--<p> —Chandogya Upanishad 2.3.1</p>-->
+                                <p class="topmargin_5">
+
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12 col-md-pull-4 text-center">
+                            <div class="widget widget_text">
+                                <h3 class="widget-title">Our Contacts</h3>
+                                <ul class="list-unstyled greylinks">
+                                    <li class="media"> <i class="fa fa-map-marker highlight rightpadding_5" aria-hidden="true"></i> <a href='https://www.google.co.in/maps/place/Sri+Vaikuntapuram+Venkateswara+Temple/17.6334343,78.0984579,15z/data=!4m5!3m4!1s0x0:0xb29c4fdbcc57527b!8m2!3d17.6334343!4d78.0984579'>Sri Vaikuntapuramu, Sangareddy </a></li>
+                                    <li class="media"> <i class="fa fa-phone highlight rightpadding_5" aria-hidden="true"></i> +91-732 992 6266 (Swamyji) </li>
+                                    <li class="media"> <i class="fa fa-pencil highlight rightpadding_5" aria-hidden="true"></i> <a href="mailto:svtemplesrd@gmail.com">svtemplesrd@gmail.com</a> </li>
+                                    <li class="media"> <i class="fa fa-clock-o highlight rightpadding_5" aria-hidden="true"></i> Sun-Fri: 06:00-20:00, Sat: 05:00-20:30 </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12 hidden-xs hidden-sm text-center">
+                            <div class="widget widget_recent_posts">
+                                <h3 class="widget-title">Recent Events</h3>
+                                <ul class="list-unstyled greylinks">
+                                    <li>
+                                        <p> <a href="blog-single-left.html">Special rituals on yearly Brahmosthvalu on special days.</a> </p>
+                                        <div class="entry-meta inline-content greylinks">
+                                            <span>
+                                                <i class="fa fa-calendar highlight3 rightpadding_5" aria-hidden="true"></i>
+                                                <a href="blog-single-right.html">
+                                                    <time datetime="2017-10-03T08:50:40+00:00">
+                                                        17 jan, 2018
+                                                    </time>
+                                                </a>
+                                            </span> <span>
+                                                <i class="fa fa-user highlight3 rightpadding_5" aria-hidden="true"></i>
+                                                <a href="blog-right.html">Admin</a>
+                                            </span> <span class="categories-links">
+                                                <i class="fa fa-tags highlight3 rightpadding_5" aria-hidden="true"></i>
+                                                <a href="blog-right.html">text</a>
+                                            </span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <p> <a href="blog-single-left.html">Vaikunta swamy vari Uthara dhwara dharshanam on vaikunta ekadhsi thidhi.</a> </p>
+                                        <div class="entry-meta inline-content greylinks">
+                                            <span>
+                                                <i class="fa fa-calendar highlight3 rightpadding_5" aria-hidden="true"></i>
+                                                <a href="blog-single-right.html">
+                                                    <time datetime="2017-10-03T08:50:40+00:00">
+                                                        17 jan, 2018
+                                                    </time>
+                                                </a>
+                                            </span> <span>
+                                                <i class="fa fa-user highlight3 rightpadding_5" aria-hidden="true"></i>
+                                                <a href="blog-right.html">Admin</a>
+                                            </span> <span class="categories-links">
+                                                <i class="fa fa-tags highlight3 rightpadding_5" aria-hidden="true"></i>
+                                                <a href="blog-right.html">Serivces</a>
+                                            </span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+            <section class="ds ms parallax page_copyright overlay_color section_padding_top_5 section_padding_bottom_5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <p>SV Temple - Sangareddy &copy;  Copyright 2018. All Rights Reserved.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+<!-- eof #canvas -->
+<script src="js/compressed.js"></script>
+<script src="js/selectize.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/switcher.js"></script>
+</html>
